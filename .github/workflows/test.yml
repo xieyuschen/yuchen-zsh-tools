@@ -1,0 +1,16 @@
+name: test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  zsh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y zsh
+      - run: zsh -n yuchen-zsh-tools.plugin.zsh
+      - run: zsh -n zsh-tools.plugin.zsh
+      - run: zsh -n plugins/git.plugin.zsh
+      - run: zsh tests/git-plugin-smoke.zsh
